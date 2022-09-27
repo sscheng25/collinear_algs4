@@ -4,7 +4,13 @@
  *  Description:
  **************************************************************************** */
 
+import java.util.ArrayList;
+
 public class FastCollinearPoints {
+    private int size;
+    private LineSegment[] lines;
+    private final ArrayList<LineSegment> ls;
+
     public FastCollinearPoints(Point[] points) {
         // finds all line segments containing 4 or more points
     }
