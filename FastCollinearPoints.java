@@ -19,6 +19,11 @@ public class FastCollinearPoints {
 
         Point[] sortedPs = points.clone();
         Arrays.sort(sortedPs);
+        int len = sortedPs.length;
+
+        for (Point p : sortedPs) {
+            
+        }
 
         /*
         for (int p = 0; p < points.length; p++) {
