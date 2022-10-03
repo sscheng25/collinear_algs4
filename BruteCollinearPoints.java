@@ -14,23 +14,18 @@ public class BruteCollinearPoints {
         // finds all line segments containing 4 points
         // null check
         if (points == null) throw new java.lang.IllegalArgumentException();
-
-        // duplicate check
-        /*
         for (int i = 0; i < points.length; i++) {
             if (points[i] == null) throw new java.lang.IllegalArgumentException();
-            for (int j = 0; j < points.length; j++) {
-                if (points[i].compareTo(points[j]) == 0) {
-                    if (points[j] == null) throw new java.lang.IllegalArgumentException();
-                    throw new java.lang.IllegalArgumentException();
-                }
-            }
         }
-        */
-
+        // duplicate check
         Point[] ps = points.clone();
         ls = new ArrayList<>();
         Arrays.sort(ps);
+        for (int i = 0; i < points.length - 1; i++) {
+            if (ps[i].compareTo(ps[i + 1]) == 0) {
+                throw new java.lang.IllegalArgumentException();
+            }
+        }
 
         for (int p = 0; p < points.length - 3; p++) {
             for (int q = p + 1; q < points.length - 2; q++) {
