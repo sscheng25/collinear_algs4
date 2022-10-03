@@ -148,5 +148,11 @@ public class Point implements Comparable<Point> {
      */
     public static void main(String[] args) {
         /* YOUR CODE HERE */
+        Point p = new Point(3, 5);
+        Point q = new Point(9, 6);
+        Point r = new Point(9, 9);
+        System.out.println(p.slopeOrder().compare(q, r));
+        System.out.println(p.slopeTo(q));
+        System.out.println(p.slopeTo(r));
     }
 }

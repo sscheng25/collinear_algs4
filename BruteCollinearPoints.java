@@ -5,11 +5,8 @@
  **************************************************************************** */
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class BruteCollinearPoints {
-    private int size;
-    private LineSegment[] lines;
     private final ArrayList<LineSegment> ls;
 
     public BruteCollinearPoints(Point[] points) {
@@ -29,22 +26,14 @@ public class BruteCollinearPoints {
         }
         Point[] ps = points.clone();
         ls = new ArrayList<>();
-        Arrays.sort(ps);
-        int len = ps.length;
+        // Arrays.sort(ps);
+
         for (int p = 0; p < points.length - 3; p++) {
             for (int q = p + 1; q < points.length - 2; q++) {
                 for (int r = q + 1; r < points.length - 1; r++) {
-                    if (ps[p].slopeTo(ps[q]) == ps[q].slopeTo(ps[r])) {
+                    if (ps[p].slopeTo(ps[q]) == ps[p].slopeTo(ps[r])) {
                         for (int s = r + 1; s < points.length; s++) {
-                            if (ps[p].slopeTo(ps[q]) == ps[r].slopeTo(ps[s])) {
-                                /*
-                                Point[] segs = new Point[4];
-                                segs[0] = ps[p];
-                                segs[1] = ps[q];
-                                segs[2] = ps[r];
-                                segs[3] = ps[s];
-                                Arrays.sort(segs);
-                                 */
+                            if (ps[p].slopeTo(ps[q]) == ps[p].slopeTo(ps[s])) {
                                 ls.add(new LineSegment(ps[p], ps[s]));
                             }
                         }
@@ -58,8 +47,7 @@ public class BruteCollinearPoints {
 
     public int numberOfSegments() {
         // the number of line segments
-        size = ls.size();
-        return size;
+        return ls.size();
     }
 
     public LineSegment[] segments() {
