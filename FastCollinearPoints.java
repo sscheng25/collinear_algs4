@@ -37,8 +37,8 @@ public class FastCollinearPoints {
             return;
         }
 
-        for (Point p : points) {
-            sortedPs = points.clone();
+        for (Point p : dc) {
+            sortedPs = dc.clone();
             Arrays.sort(sortedPs, p.slopeOrder());
             int start = 1;
             int end = 1;
