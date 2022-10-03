@@ -14,8 +14,23 @@ public class FastCollinearPoints {
         // finds all line segments containing 4 or more points
         // null check
         if (points == null) throw new java.lang.IllegalArgumentException();
+        for (int i = 0; i < points.length; i++) {
+            if (points[i] == null) throw new java.lang.IllegalArgumentException();
+        }
+        // duplicate check
+        Point[] dc = points.clone();
+        Arrays.sort(dc);
+        for (int i = 0; i < points.length - 1; i++) {
+            if (dc[i].compareTo(dc[i + 1]) == 0) {
+                throw new java.lang.IllegalArgumentException();
+            }
+        }
 
+        // length check
         int len = points.length;
+        if (len < 4) {
+            return;
+        }
 
         for (Point p : points) {
             Point[] sortedPs = points.clone();
@@ -33,7 +48,7 @@ public class FastCollinearPoints {
                 if (Double.compare(slopeA, slopeB) == 0) {
                     num++;
                     end = i + 1;
-                    if (i - 1 < len - 1) {
+                    if (i + 1 < len - 1) {
                         continue;
                     }
                 }
