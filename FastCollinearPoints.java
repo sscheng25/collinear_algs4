@@ -17,39 +17,50 @@ public class FastCollinearPoints {
         // null check
         if (points == null) throw new java.lang.IllegalArgumentException();
 
-        Point[] sortedPs = points.clone();
-        Arrays.sort(sortedPs);
-        int len = sortedPs.length;
+        int len = points.length;
 
-        for (Point p : sortedPs) {
-            
+        for (Point p : points) {
+            Point[] sortedPs = points.clone();
+            Arrays.sort(sortedPs, p.slopeOrder());
+            int start = 1;
+            int end = 1;
+            int num = 2;
+            double slopeA;
+            double slopeB = p.slopeTo(sortedPs[1]);
+
+            for (int i = 1; i < len - 1; i++) {
+                slopeA = slopeB;
+                slopeB = p.slopeTo(sortedPs[i + 1]);
+
+                if (Double.compare(slopeA, slopeB) == 0) {
+                    num++;
+                    end = i + 1;
+                    if (i - 1 < len - 1) {
+                        continue;
+                    }
+                }
+
+                if (num >= 4) {
+                    // add new segment
+                    ls.add(new LineSegment(sortedPs[start], sortedPs[end]));
+                }
+                num = 2;
+                start = i + 1;
+            }
         }
 
-        /*
-        for (int p = 0; p < points.length; p++) {
-            if (points[p] == null) throw new java.lang.IllegalArgumentException();
-            double[] sl = new double[];
-            for (int i = p + 1; i < points.length; i++) {
-                sl[i - p - 1] = points[p].slopeTo(points[i]);
-            }
-            Arrays.sort(sl);
-            for (int n = 0; n < sl.length; n++) {
-                if (sl[n] == sl[n + 1] && sl[n] == sl[n + 2]) {
-                    ls.add(new LineSegment(points[p], points[s]));
-                }
-            }
-        }*/
-    }
+        public int numberOfSegments () {
+            // the number of line segments
+            size = ls.size();
+            return size;
+        }
 
-    public int numberOfSegments() {
-        // the number of line segments
-    }
+        public LineSegment[] segments () {
+            // the line segments
+            return ls.toArray(new LineSegment[ls.size()]);
+        }
 
-    public LineSegment[] segments() {
-        // the line segments
-    }
+        public static void main (String[]args){
 
-    public static void main(String[] args) {
-
+        }
     }
-}
