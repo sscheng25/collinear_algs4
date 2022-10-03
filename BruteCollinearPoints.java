@@ -5,6 +5,7 @@
  **************************************************************************** */
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class BruteCollinearPoints {
     private final ArrayList<LineSegment> ls;
@@ -15,6 +16,7 @@ public class BruteCollinearPoints {
         if (points == null) throw new java.lang.IllegalArgumentException();
 
         // duplicate check
+        /*
         for (int i = 0; i < points.length; i++) {
             if (points[i] == null) throw new java.lang.IllegalArgumentException();
             for (int j = 0; j < points.length; j++) {
@@ -24,9 +26,11 @@ public class BruteCollinearPoints {
                 }
             }
         }
+        */
+
         Point[] ps = points.clone();
         ls = new ArrayList<>();
-        // Arrays.sort(ps);
+        Arrays.sort(ps);
 
         for (int p = 0; p < points.length - 3; p++) {
             for (int q = p + 1; q < points.length - 2; q++) {
