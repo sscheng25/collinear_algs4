@@ -10,7 +10,7 @@ import java.util.Arrays;
 public class FastCollinearPoints {
     private int size;
     private LineSegment[] lines;
-    private final ArrayList<LineSegment> ls;
+    private final ArrayList<LineSegment> ls = new ArrayList<>();
 
     public FastCollinearPoints(Point[] points) {
         // finds all line segments containing 4 or more points
@@ -48,19 +48,20 @@ public class FastCollinearPoints {
                 start = i + 1;
             }
         }
-
-        public int numberOfSegments () {
-            // the number of line segments
-            size = ls.size();
-            return size;
-        }
-
-        public LineSegment[] segments () {
-            // the line segments
-            return ls.toArray(new LineSegment[ls.size()]);
-        }
-
-        public static void main (String[]args){
-
-        }
     }
+
+    public int numberOfSegments() {
+        // the number of line segments
+        size = ls.size();
+        return size;
+    }
+
+    public LineSegment[] segments() {
+        // the line segments
+        return ls.toArray(new LineSegment[ls.size()]);
+    }
+
+    public static void main(String[] args) {
+
+    }
+}
